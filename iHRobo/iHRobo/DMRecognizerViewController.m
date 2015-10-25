@@ -25,13 +25,43 @@
 
 #import "DMRecognizerViewController.h"
 
+
+#define WELCOME_MES 0
+#define ECHO_MSG 1
+#define WARNING_MES 2
+
+#define READ_TIMEOUT 150.0
+#define READ_TIMEOUT_EXTENTION 10.0
+
+#define FORMAT(format, ...) [NSString stringWithFormat:(format), ##__VA_ARGS__]
+#define PORT 1234
+
 const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0x18, 0xc3, 0x4e, 0xe1, 0x5a, 0xbe, 0xae, 0x85, 0xea, 0x7c, 0xcb, 0xec, 0x6a, 0x8e, 0x18, 0x07, 0xf9, 0x69, 0x6d, 0x5c, 0x8e, 0x06, 0x49, 0x40, 0x74, 0x26, 0x0e, 0x29, 0x71, 0x8d, 0xb4, 0x89, 0x50, 0x02, 0x6a, 0xaa, 0xc1, 0x19, 0x2f, 0xab, 0x95, 0xfa, 0x98, 0x00, 0x88, 0xb0, 0x07, 0x81, 0x19, 0x74, 0xdd, 0xa7, 0x7a, 0x27, 0xe8, 0xef, 0x4d, 0xf6, 0x18};
+
+
+@interface DMRecognizerViewController(){
+    
+}
+
+@end
 
 @implementation DMRecognizerViewController
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Do any additional setup after loading the view, typically from a nib.
+    socketQueue = dispatch_queue_create("socketQueue", NULL);
+    listenSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:socketQueue];
+    
+    // Setup an array to store all accepted client connections
+    connectedSockets = [[NSMutableArray alloc]initWithCapacity:1];
+    
+    isRunning = NO;
+    
+    NSLog(@"Ip Address is : %@", [self getIPAddress]);
+
 	
     [SpeechKit setupWithID:@"NMDPTRIAL_pradyumnadoddala_gmail_com20151013142247"
                       host:@"sslsandbox.nmdp.nuancemobility.net"
@@ -68,6 +98,10 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
+
+#pragma mark UiTextView
+
+
 
 #pragma mark -
 #pragma mark Actions
@@ -284,5 +318,174 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
     }
     return YES;
 }
+
+
+#pragma mark -
+#pragma mark Ipaddress
+
+- (NSString *)getIPAddress
+{
+    NSString *address = @"error";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success == 0) {
+        // Loop through linked list of interfaces
+        temp_addr = interfaces;
+        while (temp_addr != NULL) {
+            if( temp_addr->ifa_addr->sa_family == AF_INET) {
+                // Check if interface is en0 which is the wifi connection on the iPhone
+                if ([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                    // Get NSString from C String
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+                }
+            }
+            
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    // Free memory
+    freeifaddrs(interfaces);
+    
+    return address;
+}
+
+
+#pragma mark -
+#pragma mark Socket
+
+- (void)toggleSocketState
+{
+    if(!isRunning)
+    {
+        NSError *error = nil;
+        if(![listenSocket acceptOnPort:PORT error:&error])
+        {
+            [self log:FORMAT(@"Error starting server: %@", error)];
+            return;
+        }
+        
+        [self log:FORMAT(@"Echo server started on port %hu", [listenSocket localPort])];
+        isRunning = YES;
+    }
+    else
+    {
+        // Stop accepting connections
+        [listenSocket disconnect];
+        
+        // Stop any client connections
+        @synchronized(connectedSockets)
+        {
+            NSUInteger i;
+            for (i = 0; i < [connectedSockets count]; i++)
+            {
+                // Call disconnect on the socket,
+                // which will invoke the socketDidDisconnect: method,
+                // which will remove the socket from the list.
+                [[connectedSockets objectAtIndex:i] disconnect];
+            }
+        }
+        
+        [self log:@"Stopped Echo server"];
+        isRunning = false;
+    }
+}
+
+
+- (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
+{
+    // This method is executed on the socketQueue (not the main thread)
+    
+    if (tag == ECHO_MSG)
+    {
+        [sock readDataToData:[GCDAsyncSocket CRLFData] withTimeout:100 tag:0];
+    }
+}
+
+- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
+{
+    
+    NSLog(@"== didReadData %@ ==", sock.description);
+    
+    NSString *msg = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    [self log:msg];
+    //[self speakText:msg];
+    [sock readDataWithTimeout:READ_TIMEOUT tag:0];
+}
+
+/**
+ * This method is called if a read has timed out.
+ * It allows us to optionally extend the timeout.
+ * We use this method to issue a warning to the user prior to disconnecting them.
+ **/
+- (NSTimeInterval)socket:(GCDAsyncSocket *)sock shouldTimeoutReadWithTag:(long)tag
+                 elapsed:(NSTimeInterval)elapsed
+               bytesDone:(NSUInteger)length
+{
+    if (elapsed <= READ_TIMEOUT)
+    {
+        NSString *warningMsg = @"Are you still there?\r\n";
+        NSData *warningData = [warningMsg dataUsingEncoding:NSUTF8StringEncoding];
+        
+        [sock writeData:warningData withTimeout:-1 tag:WARNING_MES];
+        
+        return READ_TIMEOUT_EXTENTION;
+    }
+    
+    return 0.0;
+}
+
+- (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
+{
+    if (sock != listenSocket)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            @autoreleasepool {
+                [self log:FORMAT(@"Client Disconnected")];
+            }
+        });
+        
+        @synchronized(connectedSockets)
+        {
+            [connectedSockets removeObject:sock];
+        }
+    }
+}
+
+- (void)log:(NSString *)msg {
+    NSLog(@"%@", msg);
+}
+
+- (NSString *)direction:(NSString *)message {
+    
+    return @"";
+}
+
+
+#pragma mark -
+#pragma mark -text to speech function
+
+/*- (void)speakText:(NSString*)text {
+    NSString *cmd = [text uppercaseString];
+    //_voice = "en-UK";
+    if (_synthesizer == nil) {
+        _synthesizer = [[AVSpeechSynthesizer alloc] init];
+        //_synthesizer.delegate = self;
+    }
+    
+    AVSpeechUtterance *utterence = [[AVSpeechUtterance alloc] initWithString:cmd];
+    utterence.rate = _speed;
+    
+    AVSpeechSynthesisVoice *voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-US"];
+    [utterence setVoice:voice];
+    
+    [_synthesizer speakUtterance:utterence];
+}
+ */
+
 
 @end

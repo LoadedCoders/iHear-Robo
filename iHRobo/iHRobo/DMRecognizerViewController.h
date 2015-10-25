@@ -26,6 +26,12 @@
 #import <UIKit/UIKit.h>
 #import <SpeechKit/SpeechKit.h>
 
+//Socket connection
+#import "GCDAsyncSocket.h"
+#import <ifaddrs.h>
+#import <arpa/inet.h>
+#import <AVFoundation/AVFoundation.h>
+
 @interface DMRecognizerViewController : UIViewController <SpeechKitDelegate, SKRecognizerDelegate, UITextFieldDelegate> {
     
     enum {
@@ -34,14 +40,28 @@
         TS_RECORDING,
         TS_PROCESSING,
     } transactionState;
+    
+    //Socket
+    dispatch_queue_t socketQueue;
+    NSMutableArray *connectedSockets;
+    BOOL isRunning;
+    GCDAsyncSocket *listenSocket;
 }
 
 @property(nonatomic,retain) IBOutlet UIButton* recordButton;
 @property(nonatomic,retain) IBOutlet UITextField* searchBox;
 @property(nonatomic,retain) IBOutlet UIView* vuMeter;
 @property(readonly)         SKRecognizer* voiceSearch;
+@property (strong, nonatomic) IBOutlet UITextView *textView;
+
+//text to speech
+/* @property (nonatomic, retain) AVSpeechSynthesizer *synthesizer;
+@property (nonatomic, assign) float speed;
+@property (nonatomic, retain) NSString *voice;
+*/
 
 - (IBAction)recordButtonAction: (id)sender;
+
 
 @end
 

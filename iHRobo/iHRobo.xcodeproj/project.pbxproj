@@ -27,6 +27,7 @@
 		0E055BE51BD7578F003DA820 /* earcon_cancel.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E055BE21BD7578F003DA820 /* earcon_cancel.wav */; settings = {ASSET_TAGS = (); }; };
 		0E055BE61BD7578F003DA820 /* earcon_done_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E055BE31BD7578F003DA820 /* earcon_done_listening.wav */; settings = {ASSET_TAGS = (); }; };
 		0E055BE71BD7578F003DA820 /* earcon_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E055BE41BD7578F003DA820 /* earcon_listening.wav */; settings = {ASSET_TAGS = (); }; };
+		A8F80D801BDC900900299999 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A8F80D7F1BDC900900299999 /* GCDAsyncSocket.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		0E055BE21BD7578F003DA820 /* earcon_cancel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earcon_cancel.wav; sourceTree = "<group>"; };
 		0E055BE31BD7578F003DA820 /* earcon_done_listening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earcon_done_listening.wav; sourceTree = "<group>"; };
 		0E055BE41BD7578F003DA820 /* earcon_listening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earcon_listening.wav; sourceTree = "<group>"; };
+		A8F80D7E1BDC900900299999 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		A8F80D7F1BDC900900299999 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,8 @@
 		0E055BA11BD752FA003DA820 /* iHRobo */ = {
 			isa = PBXGroup;
 			children = (
+				A8F80D7E1BDC900900299999 /* GCDAsyncSocket.h */,
+				A8F80D7F1BDC900900299999 /* GCDAsyncSocket.m */,
 				0E055BDE1BD75535003DA820 /* DMRecognizerViewController.h */,
 				0E055BDF1BD75535003DA820 /* DMRecognizerViewController.m */,
 				0E055BA51BD752FA003DA820 /* AppDelegate.h */,
@@ -226,6 +231,7 @@
 				TargetAttributes = {
 					0E055B9E1BD752FA003DA820 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = MH4RXY428Y;
 					};
 					0E055BB71BD752FA003DA820 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -281,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E055BAA1BD752FA003DA820 /* ViewController.m in Sources */,
+				A8F80D801BDC900900299999 /* GCDAsyncSocket.m in Sources */,
 				0E055BA71BD752FA003DA820 /* AppDelegate.m in Sources */,
 				0E055BA41BD752FA003DA820 /* main.m in Sources */,
 				0E055BE01BD75535003DA820 /* DMRecognizerViewController.m in Sources */,
@@ -409,6 +416,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -417,6 +426,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.umkc.iHRobo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -424,6 +434,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -432,6 +444,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.umkc.iHRobo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
