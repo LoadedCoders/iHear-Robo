@@ -47,8 +47,10 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
 
 @implementation DMRecognizerViewController
 
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     // Do any additional setup after loading the view, typically from a nib.
@@ -77,6 +79,13 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
 	[SpeechKit setEarcon:earconStart forType:SKStartRecordingEarconType];
 	[SpeechKit setEarcon:earconStop forType:SKStopRecordingEarconType];
 	[SpeechKit setEarcon:earconCancel forType:SKCancelRecordingEarconType];
+    
+    
+    //textview
+    [_textView setScrollEnabled:YES];
+    [_textView setUserInteractionEnabled:YES];
+    _textView.delegate =self;
+    [self.view addSubview:_textView];
 }
 
 /*
@@ -99,9 +108,41 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
 	// e.g. self.myOutlet = nil;
 }
 
-#pragma mark UiTextView
 
+#pragma mark reassigning the keyboard
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"touchesBegan:withEvent:");
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+
+#pragma mark - Text View delegates
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:
+(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+    }
+    return YES;
+}
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    NSLog(@"Did begin editing");
+    [textView resignFirstResponder];
+}
+-(void)textViewDidChange:(UITextView *)textView{
+    NSLog(@"Did Change");
+    
+}
+-(void)textViewDidEndEditing:(UITextView *)textView{
+    NSLog(@"Did End editing");
+    
+}
+-(BOOL)textViewShouldEndEditing:(UITextView *)textView{
+    NSLog(@"Ur here");
+    [textView resignFirstResponder];
+    return YES;
+}
 
 #pragma mark -
 #pragma mark Actions
@@ -413,6 +454,7 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
     NSString *msg = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     [self log:msg];
+    _textView.text = msg;
     //[self speakText:msg];
     [sock readDataWithTimeout:READ_TIMEOUT tag:0];
 }

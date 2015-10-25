@@ -32,7 +32,7 @@
 #import <arpa/inet.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface DMRecognizerViewController : UIViewController <SpeechKitDelegate, SKRecognizerDelegate, UITextFieldDelegate> {
+@interface DMRecognizerViewController : UIViewController <SpeechKitDelegate, SKRecognizerDelegate, UITextFieldDelegate, UITextViewDelegate> {
     
     enum {
         TS_IDLE,
