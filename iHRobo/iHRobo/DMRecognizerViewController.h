@@ -32,7 +32,7 @@
 #import <arpa/inet.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface DMRecognizerViewController : UIViewController <SpeechKitDelegate, SKRecognizerDelegate, UITextFieldDelegate, UITextViewDelegate> {
+@interface DMRecognizerViewController : UIViewController <SpeechKitDelegate, SKRecognizerDelegate, UITextFieldDelegate, UITextViewDelegate ,AVSpeechSynthesizerDelegate> {
     
     enum {
         TS_IDLE,
@@ -52,14 +52,15 @@
 @property(nonatomic,retain) IBOutlet UITextField* searchBox;
 @property(nonatomic,retain) IBOutlet UIView* vuMeter;
 @property(readonly)         SKRecognizer* voiceSearch;
+
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 
 //text to speech
-/* @property (nonatomic, retain) AVSpeechSynthesizer *synthesizer;
+@property (nonatomic,retain) AVSpeechSynthesizer *synthesizer;
 @property (nonatomic, assign) float speed;
 @property (nonatomic, retain) NSString *voice;
-*/
 
+- (IBAction)SendtoSpark:(id)sender;
 - (IBAction)recordButtonAction: (id)sender;
 
 

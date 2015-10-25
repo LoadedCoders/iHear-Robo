@@ -64,6 +64,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REy-q6-Fwb">
+                                <rect key="frame" x="138" y="154" width="97" height="30"/>
+                                <state key="normal" title="Send to Spark"/>
+                                <connections>
+                                    <action selector="SendtoSpark:" destination="1SO-bL-DGY" eventType="touchUpInside" id="ndl-hb-hiI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

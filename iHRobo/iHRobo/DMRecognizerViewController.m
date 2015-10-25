@@ -81,7 +81,7 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
 	[SpeechKit setEarcon:earconCancel forType:SKCancelRecordingEarconType];
     
     
-    //textview
+    // For Textview
     [_textView setScrollEnabled:YES];
     [_textView setUserInteractionEnabled:YES];
     _textView.delegate =self;
@@ -108,15 +108,7 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
 	// e.g. self.myOutlet = nil;
 }
 
-
-#pragma mark reassigning the keyboard
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"touchesBegan:withEvent:");
-    [self.view endEditing:YES];
-    [super touchesBegan:touches withEvent:event];
-}
-
+#pragma mark -
 #pragma mark - Text View delegates
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:
@@ -142,6 +134,27 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
     NSLog(@"Ur here");
     [textView resignFirstResponder];
     return YES;
+}
+
+ //reassigning the keyboard by touching on screens
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"touchesBegan:withEvent:");
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+
+#pragma mark - 
+#pragma mark Send to Spark button
+
+- (IBAction)SendtoSpark:(id)sender {
+    
+    NSString *msg = self.searchBox.text;
+    NSLog(@"message is %@",msg);
+    NSData *dataout = [msg dataUsingEncoding:NSASCIIStringEncoding];
+    [listenSocket writeData:dataout withTimeout:-1 tag:0];
+    //[listenSocket writeData:data  withTimeout:-1 tag:theTag];
+    [self speakText:@"Sending data to spark"];
+    
 }
 
 #pragma mark -
@@ -511,12 +524,12 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
 #pragma mark -
 #pragma mark -text to speech function
 
-/*- (void)speakText:(NSString*)text {
+- (void)speakText:(NSString*)text {
+    NSLog(@"in speakText");
     NSString *cmd = [text uppercaseString];
-    //_voice = "en-UK";
     if (_synthesizer == nil) {
         _synthesizer = [[AVSpeechSynthesizer alloc] init];
-        //_synthesizer.delegate = self;
+        _synthesizer.delegate = self;
     }
     
     AVSpeechUtterance *utterence = [[AVSpeechUtterance alloc] initWithString:cmd];
@@ -526,8 +539,8 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
     [utterence setVoice:voice];
     
     [_synthesizer speakUtterance:utterence];
+    
 }
- */
 
 
 @end
