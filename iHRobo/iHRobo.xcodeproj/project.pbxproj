@@ -69,6 +69,8 @@
 		0E055BE21BD7578F003DA820 /* earcon_cancel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earcon_cancel.wav; sourceTree = "<group>"; };
 		0E055BE31BD7578F003DA820 /* earcon_done_listening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earcon_done_listening.wav; sourceTree = "<group>"; };
 		0E055BE41BD7578F003DA820 /* earcon_listening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earcon_listening.wav; sourceTree = "<group>"; };
+		0E5BE5AB1BE332B4001D40D3 /* LxDBAnything.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxDBAnything.h; sourceTree = "<group>"; };
+		0E5BE5AC1BE33304001D40D3 /* iHRobo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iHRobo-Prefix.pch"; sourceTree = "<group>"; };
 		550AC0E3890ECE832D5764F3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		714A0472E269C7E5B4BB1F19 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A8F80D7E1BDC900900299999 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		0E055BA11BD752FA003DA820 /* iHRobo */ = {
 			isa = PBXGroup;
 			children = (
+				0E5BE5AA1BE332A5001D40D3 /* Helpers */,
 				A8F80D7E1BDC900900299999 /* GCDAsyncSocket.h */,
 				A8F80D7F1BDC900900299999 /* GCDAsyncSocket.m */,
 				0E055BDE1BD75535003DA820 /* DMRecognizerViewController.h */,
@@ -149,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				0E055BA31BD752FA003DA820 /* main.m */,
+				0E5BE5AC1BE33304001D40D3 /* iHRobo-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -187,6 +191,14 @@
 				0E055BE41BD7578F003DA820 /* earcon_listening.wav */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		0E5BE5AA1BE332A5001D40D3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0E5BE5AB1BE332B4001D40D3 /* LxDBAnything.h */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		68D4134A4A504CCC1B598753 /* Pods */ = {
@@ -490,6 +502,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/iHRobo/iHRobo-Prefix.pch";
 				INFOPLIST_FILE = iHRobo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.umkc.iHRobo;
@@ -509,6 +523,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/iHRobo/iHRobo-Prefix.pch";
 				INFOPLIST_FILE = iHRobo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.umkc.iHRobo;

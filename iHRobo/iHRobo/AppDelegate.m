@@ -25,6 +25,7 @@
     
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
+    LxDBAnyVar(@"Hey");
     return YES;
 }
 
