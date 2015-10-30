@@ -22,12 +22,13 @@
 		0E055BD71BD754B3003DA820 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E055BD61BD754B3003DA820 /* Security.framework */; };
 		0E055BD91BD754E3003DA820 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E055BD81BD754E3003DA820 /* SystemConfiguration.framework */; };
 		0E055BDB1BD754E8003DA820 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E055BDA1BD754E8003DA820 /* UIKit.framework */; };
-		0E055BDD1BD754F7003DA820 /* SpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E055BDC1BD754F7003DA820 /* SpeechKit.framework */; settings = {ASSET_TAGS = (); }; };
-		0E055BE01BD75535003DA820 /* DMRecognizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E055BDF1BD75535003DA820 /* DMRecognizerViewController.m */; settings = {ASSET_TAGS = (); }; };
-		0E055BE51BD7578F003DA820 /* earcon_cancel.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E055BE21BD7578F003DA820 /* earcon_cancel.wav */; settings = {ASSET_TAGS = (); }; };
-		0E055BE61BD7578F003DA820 /* earcon_done_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E055BE31BD7578F003DA820 /* earcon_done_listening.wav */; settings = {ASSET_TAGS = (); }; };
-		0E055BE71BD7578F003DA820 /* earcon_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E055BE41BD7578F003DA820 /* earcon_listening.wav */; settings = {ASSET_TAGS = (); }; };
-		A8F80D801BDC900900299999 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A8F80D7F1BDC900900299999 /* GCDAsyncSocket.m */; settings = {ASSET_TAGS = (); }; };
+		0E055BDD1BD754F7003DA820 /* SpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E055BDC1BD754F7003DA820 /* SpeechKit.framework */; };
+		0E055BE01BD75535003DA820 /* DMRecognizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E055BDF1BD75535003DA820 /* DMRecognizerViewController.m */; };
+		0E055BE51BD7578F003DA820 /* earcon_cancel.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E055BE21BD7578F003DA820 /* earcon_cancel.wav */; };
+		0E055BE61BD7578F003DA820 /* earcon_done_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E055BE31BD7578F003DA820 /* earcon_done_listening.wav */; };
+		0E055BE71BD7578F003DA820 /* earcon_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E055BE41BD7578F003DA820 /* earcon_listening.wav */; };
+		A8F80D801BDC900900299999 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A8F80D7F1BDC900900299999 /* GCDAsyncSocket.m */; };
+		FE453D5D8AED635FBDC13876 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BDC119F5A5AA3A57FD2752 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,8 +69,11 @@
 		0E055BE21BD7578F003DA820 /* earcon_cancel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earcon_cancel.wav; sourceTree = "<group>"; };
 		0E055BE31BD7578F003DA820 /* earcon_done_listening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earcon_done_listening.wav; sourceTree = "<group>"; };
 		0E055BE41BD7578F003DA820 /* earcon_listening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earcon_listening.wav; sourceTree = "<group>"; };
+		550AC0E3890ECE832D5764F3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		714A0472E269C7E5B4BB1F19 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A8F80D7E1BDC900900299999 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		A8F80D7F1BDC900900299999 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		C3BDC119F5A5AA3A57FD2752 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,7 @@
 				0E055BD11BD754A1003DA820 /* CFNetwork.framework in Frameworks */,
 				0E055BCF1BD7549B003DA820 /* AVFoundation.framework in Frameworks */,
 				0E055BCD1BD75495003DA820 /* AudioToolbox.framework in Frameworks */,
+				FE453D5D8AED635FBDC13876 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +112,7 @@
 				0E055BA11BD752FA003DA820 /* iHRobo */,
 				0E055BBB1BD752FA003DA820 /* iHRoboTests */,
 				0E055BA01BD752FA003DA820 /* Products */,
+				68D4134A4A504CCC1B598753 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,6 +174,7 @@
 				0E055BD01BD754A1003DA820 /* CFNetwork.framework */,
 				0E055BCE1BD7549B003DA820 /* AVFoundation.framework */,
 				0E055BCC1BD75495003DA820 /* AudioToolbox.framework */,
+				C3BDC119F5A5AA3A57FD2752 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -182,6 +189,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		68D4134A4A504CCC1B598753 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				550AC0E3890ECE832D5764F3 /* Pods.debug.xcconfig */,
+				714A0472E269C7E5B4BB1F19 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -189,9 +205,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0E055BC11BD752FA003DA820 /* Build configuration list for PBXNativeTarget "iHRobo" */;
 			buildPhases = (
+				F2892DCB905CB9892A3EFBCC /* Check Pods Manifest.lock */,
 				0E055B9B1BD752FA003DA820 /* Sources */,
 				0E055B9C1BD752FA003DA820 /* Frameworks */,
 				0E055B9D1BD752FA003DA820 /* Resources */,
+				FD60469813776130C8C35F99 /* Embed Pods Frameworks */,
+				F02998E3EE02D70C7D00C708 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -231,7 +250,7 @@
 				TargetAttributes = {
 					0E055B9E1BD752FA003DA820 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = MH4RXY428Y;
+						DevelopmentTeam = W8RFWHQM7B;
 					};
 					0E055BB71BD752FA003DA820 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -280,6 +299,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F02998E3EE02D70C7D00C708 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2892DCB905CB9892A3EFBCC /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FD60469813776130C8C35F99 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0E055B9B1BD752FA003DA820 /* Sources */ = {
@@ -414,6 +481,7 @@
 		};
 		0E055BC21BD752FA003DA820 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 550AC0E3890ECE832D5764F3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -432,6 +500,7 @@
 		};
 		0E055BC31BD752FA003DA820 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 714A0472E269C7E5B4BB1F19 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
