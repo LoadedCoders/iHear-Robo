@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AFNetworking.h"
+#import "iHNLP.h"
 
 @interface AppDelegate ()
 
@@ -25,7 +26,11 @@
     
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
-    LxDBAnyVar(@"Hey");
+//    LxDBAnyVar(@"Hey");
+    
+    iHNLP *nlp = [[iHNLP alloc] init];
+    [nlp showTagsForText:@"My name is Prad"];
+    
     return YES;
 }
 
