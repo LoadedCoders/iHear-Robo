@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AFNetworking.h"
-#import "iHNLP.h"
+#import "Robo.h"
 
 @interface AppDelegate ()
 
@@ -28,8 +28,7 @@
     
 //    LxDBAnyVar(@"Hey");
     
-    iHNLP *nlp = [[iHNLP alloc] init];
-    [nlp showTagsForText:@"My name is Prad"];
+    [[Robo sharedManager] info];
     
     return YES;
 }

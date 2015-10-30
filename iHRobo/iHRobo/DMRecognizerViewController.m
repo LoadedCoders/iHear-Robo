@@ -24,7 +24,7 @@
 //
 
 #import "DMRecognizerViewController.h"
-
+#import "Robo.h"
 
 #define WELCOME_MES 0
 #define ECHO_MSG 1
@@ -119,18 +119,12 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
     }
     return YES;
 }
+
 -(void)textViewDidBeginEditing:(UITextView *)textView{
     NSLog(@"Did begin editing");
     [textView resignFirstResponder];
 }
--(void)textViewDidChange:(UITextView *)textView{
-    NSLog(@"Did Change");
-    
-}
--(void)textViewDidEndEditing:(UITextView *)textView{
-    NSLog(@"Did End editing");
-    
-}
+
 -(BOOL)textViewShouldEndEditing:(UITextView *)textView{
     NSLog(@"Ur here");
     [textView resignFirstResponder];
@@ -148,7 +142,6 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
 #pragma mark Actions
 
 - (IBAction)SendtoSpark:(id)sender {
-    
     NSString *msg = self.searchBox.text;
     NSLog(@"message is %@",msg);
     NSData *dataout = [msg dataUsingEncoding:NSASCIIStringEncoding];
@@ -193,26 +186,9 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
         
         langType = @"en_US";
         
-        //		switch (languageType.selectedSegmentIndex) {
-        //			case 0:
-        //				langType = @"en_US";
-        //				break;
-        //			case 1:
-        //				langType = @"en_GB";
-        //				break;
-        //			case 2:
-        //				langType = @"fr_FR";
-        //				break;
-        //			case 3:
-        //				langType = @"de_DE";
-        //				break;
-        //			default:
-        //				langType = @"en_US";
-        //				break;
-        //		}
         /* Nuance can also create a custom recognition type optimized for your application if neither search nor dictation are appropriate. */
         
-        NSLog(@"Recognizing type:'%@' Language Code: '%@' using end-of-speech detection:%d.", recoType, langType, detectionType);
+        NSLog(@"Recognizing type:'%@' Language Code: '%@' using end-of-speech detection:%lu.", recoType, langType, (unsigned long)detectionType);
         
         if (_voiceSearch) {
             _voiceSearch = nil;
@@ -304,13 +280,17 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
     transactionState = TS_IDLE;
     [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
     
-    if (numOfResults > 0)
+    if (numOfResults > 0) {
         self.searchBox.text = [results firstResult];
+        [[Robo sharedManager] process:[results firstResult]];
+    }
     
-    if (numOfResults > 1)
-        NSLog(@"%@", [[results.results subarrayWithRange:NSMakeRange(1, numOfResults-1)] componentsJoinedByString:@"\n"]);
+    if (numOfResults > 1) {
+        _textView.text = [[results.results subarrayWithRange:NSMakeRange(1, numOfResults-1)] componentsJoinedByString:@"\n"];
+        NSLog(@"%@", _textView.text);
+    }
     
-    if (results.suggestion){
+    if (results.suggestion) {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Suggestion"
                                                                        message:results.suggestion
                                                                 preferredStyle:UIAlertControllerStyleAlert];

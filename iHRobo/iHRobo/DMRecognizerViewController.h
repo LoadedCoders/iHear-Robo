@@ -56,7 +56,7 @@
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 
 //text to speech
-@property (nonatomic,retain) AVSpeechSynthesizer *synthesizer;
+@property (nonatomic, retain) AVSpeechSynthesizer *synthesizer;
 @property (nonatomic, assign) float speed;
 @property (nonatomic, retain) NSString *voice;
 

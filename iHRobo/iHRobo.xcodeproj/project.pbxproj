@@ -30,6 +30,12 @@
 		0E5BE5B01BE339CB001D40D3 /* iHNLP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5BE5AF1BE339CB001D40D3 /* iHNLP.m */; };
 		0E5BE5B11BE339CB001D40D3 /* iHNLP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5BE5AF1BE339CB001D40D3 /* iHNLP.m */; };
 		0E5BE5B31BE33E7D001D40D3 /* iHNLPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5BE5B21BE33E7D001D40D3 /* iHNLPTests.m */; };
+		0E5BE5B71BE34940001D40D3 /* Robo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5BE5B61BE34940001D40D3 /* Robo.m */; };
+		0E5BE5B81BE34940001D40D3 /* Robo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5BE5B61BE34940001D40D3 /* Robo.m */; };
+		0E5BE5BA1BE34964001D40D3 /* RoboPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BE5B91BE34964001D40D3 /* RoboPropertyList.plist */; };
+		0E5BE5BB1BE34964001D40D3 /* RoboPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BE5B91BE34964001D40D3 /* RoboPropertyList.plist */; };
+		0E86DC981BE3559A004D72D3 /* Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86DC971BE3559A004D72D3 /* Query.m */; };
+		0E86DC991BE3559B004D72D3 /* Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86DC971BE3559A004D72D3 /* Query.m */; };
 		A8F80D801BDC900900299999 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A8F80D7F1BDC900900299999 /* GCDAsyncSocket.m */; };
 		FE453D5D8AED635FBDC13876 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BDC119F5A5AA3A57FD2752 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -77,6 +83,11 @@
 		0E5BE5AE1BE339CB001D40D3 /* iHNLP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iHNLP.h; sourceTree = "<group>"; };
 		0E5BE5AF1BE339CB001D40D3 /* iHNLP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iHNLP.m; sourceTree = "<group>"; };
 		0E5BE5B21BE33E7D001D40D3 /* iHNLPTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iHNLPTests.m; sourceTree = "<group>"; };
+		0E5BE5B51BE34940001D40D3 /* Robo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Robo.h; sourceTree = "<group>"; };
+		0E5BE5B61BE34940001D40D3 /* Robo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Robo.m; sourceTree = "<group>"; };
+		0E5BE5B91BE34964001D40D3 /* RoboPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RoboPropertyList.plist; sourceTree = "<group>"; };
+		0E86DC961BE3559A004D72D3 /* Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Query.h; sourceTree = "<group>"; };
+		0E86DC971BE3559A004D72D3 /* Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Query.m; sourceTree = "<group>"; };
 		550AC0E3890ECE832D5764F3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		714A0472E269C7E5B4BB1F19 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A8F80D7E1BDC900900299999 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
@@ -136,6 +147,7 @@
 		0E055BA11BD752FA003DA820 /* iHRobo */ = {
 			isa = PBXGroup;
 			children = (
+				0E86DC951BE3557D004D72D3 /* Models */,
 				0E5BE5AA1BE332A5001D40D3 /* Helpers */,
 				A8F80D7E1BDC900900299999 /* GCDAsyncSocket.h */,
 				A8F80D7F1BDC900900299999 /* GCDAsyncSocket.m */,
@@ -150,6 +162,7 @@
 				0E055BB01BD752FA003DA820 /* LaunchScreen.storyboard */,
 				0E055BB31BD752FA003DA820 /* Info.plist */,
 				0E055BA21BD752FA003DA820 /* Supporting Files */,
+				0E5BE5B91BE34964001D40D3 /* RoboPropertyList.plist */,
 			);
 			path = iHRobo;
 			sourceTree = "<group>";
@@ -206,8 +219,19 @@
 				0E5BE5AD1BE339B7001D40D3 /* LxDBAnything.h */,
 				0E5BE5AE1BE339CB001D40D3 /* iHNLP.h */,
 				0E5BE5AF1BE339CB001D40D3 /* iHNLP.m */,
+				0E5BE5B51BE34940001D40D3 /* Robo.h */,
+				0E5BE5B61BE34940001D40D3 /* Robo.m */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0E86DC951BE3557D004D72D3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0E86DC961BE3559A004D72D3 /* Query.h */,
+				0E86DC971BE3559A004D72D3 /* Query.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		68D4134A4A504CCC1B598753 /* Pods */ = {
@@ -304,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E055BB21BD752FA003DA820 /* LaunchScreen.storyboard in Resources */,
+				0E5BE5BA1BE34964001D40D3 /* RoboPropertyList.plist in Resources */,
 				0E055BAF1BD752FA003DA820 /* Assets.xcassets in Resources */,
 				0E055BE61BD7578F003DA820 /* earcon_done_listening.wav in Resources */,
 				0E055BE51BD7578F003DA820 /* earcon_cancel.wav in Resources */,
@@ -316,6 +341,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E5BE5BB1BE34964001D40D3 /* RoboPropertyList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,11 +400,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E86DC981BE3559A004D72D3 /* Query.m in Sources */,
 				0E055BAA1BD752FA003DA820 /* ViewController.m in Sources */,
 				A8F80D801BDC900900299999 /* GCDAsyncSocket.m in Sources */,
 				0E055BA71BD752FA003DA820 /* AppDelegate.m in Sources */,
 				0E5BE5B01BE339CB001D40D3 /* iHNLP.m in Sources */,
 				0E055BA41BD752FA003DA820 /* main.m in Sources */,
+				0E5BE5B71BE34940001D40D3 /* Robo.m in Sources */,
 				0E055BE01BD75535003DA820 /* DMRecognizerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,6 +418,8 @@
 				0E055BBD1BD752FA003DA820 /* iHRoboTests.m in Sources */,
 				0E5BE5B11BE339CB001D40D3 /* iHNLP.m in Sources */,
 				0E5BE5B31BE33E7D001D40D3 /* iHNLPTests.m in Sources */,
+				0E5BE5B81BE34940001D40D3 /* Robo.m in Sources */,
+				0E86DC991BE3559B004D72D3 /* Query.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
