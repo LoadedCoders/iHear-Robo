@@ -10,10 +10,12 @@
 
 @interface Query : NSObject
 
+@property (nonatomic, strong) NSString *determiner;
 @property (nonatomic, strong) NSString *subject;
 @property (nonatomic, strong) NSString *object;
 @property (nonatomic, strong) NSString *predicate;
 
 @property (nonatomic, strong) NSString *response;
 @property (nonatomic, assign) BOOL *processed;
+@property (nonatomic, assign) NSString *type;
 @end

@@ -41,7 +41,7 @@
 }
 
 - (void)info {
-    LxDBAnyVar(roboDetails);
+    NSLog(@"%@", roboDetails);
 }
 
 - (void)process: (NSString *)text {
@@ -54,6 +54,7 @@
     NSString *targetText = text;
     [tagger setString:targetText];
     
+    NSArray *whPronouns = @[@"what", @"why", @"where", @"how", @"when", @"whom"];
     
     Query *q = [Query new];
     
@@ -66,33 +67,62 @@
          NSLog(@"%@ - %@", word, tag);
          
          if (tag == NSLinguisticTagVerb) {
-             q.predicate = word;
-         }
-         
-         if (tag == NSLinguisticTagDeterminer) {
-             if ([word isEqualToString:@"your"]) {
-                 q.subject = @"my";
+             if (q.predicate) {
+                 q.predicate = [NSString stringWithFormat:@"%@ %@", q.predicate, word];
              } else {
-                 q.subject = @"unknown";
+                 q.predicate = word;
              }
          }
-         if (tag == NSLinguisticTagNoun) {
-            q.object = word;
+         else if (tag == NSLinguisticTagDeterminer) {
+            q.determiner = word;
+         }
+         else if (tag == NSLinguisticTagPronoun) {
+             if ([whPronouns containsObject:[word lowercaseString]]) {
+                 
+             } else {
+                 q.subject = word;
+             }
+         }
+         else if (tag == NSLinguisticTagNoun) {
+             if (!q.subject) {
+                 if (q.determiner) {
+                    q.subject = [NSString stringWithFormat:@"%@ %@", q.determiner, word];
+                     q.determiner = nil;
+                 } else {
+                    q.subject = word;
+                 }
+             } else {
+                 if (q.determiner) {
+                     q.object = [NSString stringWithFormat:@"%@ %@", q.determiner, word];
+                     q.determiner = nil;
+                 } else {
+                     q.object = word;
+                 }
+             }
+         } else if (tag == NSLinguisticTagPreposition) {
+             if (q.predicate) {
+                 q.predicate = [NSString stringWithFormat:@"%@ %@", q.predicate, word];
+             } else {
+                 q.predicate = word;
+             }
          }
          
      }];
     
-    LxDBAnyVar(q);
+    NSLog(@"%@", q);
     
     [self processQuery:q];
 }
 
 - (void)processQuery:(Query *)q {
-    if ([q.subject isEqualToString:@"my"]) {
-        if([[roboDetails allKeys] containsObject:q.object]) {
-            q.response = [NSString stringWithFormat:@"%@ %@ %@ %@",q.subject, q.object, q.predicate, [roboDetails valueForKey:q.object]];
-        } else {
-            q.response = [NSString stringWithFormat:@"I don't know %@ %@",q.subject, q.object];
+    if ([q.subject containsString:@"your"]) {
+        q.subject = [q.subject stringByReplacingOccurrencesOfString:@"your" withString:@"my"];
+        NSArray *comps = [q.subject componentsSeparatedByString:@" "];
+        NSString *prop = [comps lastObject];
+        if([[roboDetails allKeys] containsObject:prop]) {
+                q.response = [NSString stringWithFormat:@"%@ %@ %@",q.subject, q.predicate, [roboDetails valueForKey:prop]];
+                    } else {
+            q.response = [NSString stringWithFormat:@"I don't know %@", q.subject];
         }
     }
     
