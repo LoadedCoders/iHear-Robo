@@ -13,7 +13,7 @@
 
 @interface Robo() {
     NSString *plistPath;
-    NSDictionary *roboDetails;
+    NSMutableDictionary *roboDetails;
 }
 
 @property (nonatomic, strong) AVSpeechSynthesizer *synthesizer;
@@ -35,7 +35,7 @@
     if (self = [super init]) {
         plistPath = [[NSBundle mainBundle] pathForResource:@"RoboPropertyList" ofType:@"plist"];
         NSAssert(plistPath != NULL, @"Sorry Robo plist missing.");
-        roboDetails = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+        roboDetails = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
         
     }
     return self;
@@ -43,6 +43,10 @@
 
 - (void)info {
     NSLog(@"%@", roboDetails);
+}
+
+- (void)updateKBKey:(NSString *)key value:(NSString *)value {
+    [roboDetails setValue:value forKey:key];
 }
 
 - (void)process: (NSString *)text {
@@ -116,7 +120,6 @@
 }
 
 - (void)processQuery:(Query *)q {
-    
     if ([q.subject containsString:@"your"]) {
         q.subject = [q.subject stringByReplacingOccurrencesOfString:@"your" withString:@"my"];
         NSArray *comps = [q.subject componentsSeparatedByString:@" "];

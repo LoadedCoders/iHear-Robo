@@ -62,6 +62,8 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
     
     isRunning = NO;
     
+    [[Robo new] updateKBKey:@"address" value:[self getIPAddress]];
+    
     NSLog(@"IP Address : %@ : %d", [self getIPAddress], PORT);
     
     
@@ -440,9 +442,7 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
     
     dispatch_async(dispatch_get_main_queue(), ^{
         @autoreleasepool {
-            
             [self log:FORMAT(@"Accepted client %@:%hu", host, port)];
-            
         }
     });
     

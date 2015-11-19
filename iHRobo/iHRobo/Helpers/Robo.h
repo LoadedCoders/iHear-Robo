@@ -18,4 +18,6 @@
 - (void)info;
 - (void)process:(NSString *)text;
 - (void)processQuery:(Query *)q;
+
+- (void)updateKBKey:(NSString *)key value:(NSString *)value;
 @end
