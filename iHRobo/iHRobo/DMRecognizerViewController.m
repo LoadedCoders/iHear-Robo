@@ -73,11 +73,11 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
     
     // Set earcons to play
     SKEarcon* earconStart	= [SKEarcon earconWithName:@"earcon_listening.wav"];
-    SKEarcon* earconStop	= [SKEarcon earconWithName:@"earcon_done_listening.wav"];
+//    SKEarcon* earconStop	= [SKEarcon earconWithName:@"earcon_done_listening.wav"];
     SKEarcon* earconCancel	= [SKEarcon earconWithName:@"earcon_cancel.wav"];
     
     [SpeechKit setEarcon:earconStart forType:SKStartRecordingEarconType];
-    [SpeechKit setEarcon:earconStop forType:SKStopRecordingEarconType];
+//    [SpeechKit setEarcon:earconStop forType:SKStopRecordingEarconType];
     [SpeechKit setEarcon:earconCancel forType:SKCancelRecordingEarconType];
     
     
@@ -112,7 +112,7 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
 
 #pragma mark - Text View delegate
 
--(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:
 (NSRange)range replacementText:(NSString *)text{
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
@@ -120,12 +120,12 @@ const unsigned char SpeechKitApplicationKey[] = {0xcd, 0xb5, 0x4a, 0x7f, 0x8b, 0
     return YES;
 }
 
--(void)textViewDidBeginEditing:(UITextView *)textView{
+- (void)textViewDidBeginEditing:(UITextView *)textView{
     NSLog(@"Did begin editing");
     [textView resignFirstResponder];
 }
 
--(BOOL)textViewShouldEndEditing:(UITextView *)textView{
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView{
     NSLog(@"Ur here");
     [textView resignFirstResponder];
     return YES;

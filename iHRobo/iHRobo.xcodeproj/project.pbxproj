@@ -36,6 +36,11 @@
 		0E5BE5BB1BE34964001D40D3 /* RoboPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BE5B91BE34964001D40D3 /* RoboPropertyList.plist */; };
 		0E86DC981BE3559A004D72D3 /* Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86DC971BE3559A004D72D3 /* Query.m */; };
 		0E86DC991BE3559B004D72D3 /* Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86DC971BE3559A004D72D3 /* Query.m */; };
+		0E92C2061BFC249200EED4F8 /* robot_face_by_spikesguitar2-d5ddfmb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0E92C2051BFC249200EED4F8 /* robot_face_by_spikesguitar2-d5ddfmb.jpg */; };
+		0E92C2081BFC270900EED4F8 /* Joy.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E92C2071BFC270900EED4F8 /* Joy.png */; };
+		0E92C20A1BFC277700EED4F8 /* Soulmanz_GokuFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0E92C2091BFC277700EED4F8 /* Soulmanz_GokuFace.jpg */; };
+		0E92C20C1BFC2E3F00EED4F8 /* Robome.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0E92C20B1BFC2E3F00EED4F8 /* Robome.jpg */; };
+		0E92C20F1BFD8A2A00EED4F8 /* APIServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E92C20E1BFD8A2A00EED4F8 /* APIServices.m */; };
 		A8F80D801BDC900900299999 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A8F80D7F1BDC900900299999 /* GCDAsyncSocket.m */; };
 		FE453D5D8AED635FBDC13876 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BDC119F5A5AA3A57FD2752 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -88,6 +93,12 @@
 		0E5BE5B91BE34964001D40D3 /* RoboPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RoboPropertyList.plist; sourceTree = "<group>"; };
 		0E86DC961BE3559A004D72D3 /* Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Query.h; sourceTree = "<group>"; };
 		0E86DC971BE3559A004D72D3 /* Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Query.m; sourceTree = "<group>"; };
+		0E92C2051BFC249200EED4F8 /* robot_face_by_spikesguitar2-d5ddfmb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "robot_face_by_spikesguitar2-d5ddfmb.jpg"; sourceTree = "<group>"; };
+		0E92C2071BFC270900EED4F8 /* Joy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Joy.png; sourceTree = "<group>"; };
+		0E92C2091BFC277700EED4F8 /* Soulmanz_GokuFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Soulmanz_GokuFace.jpg; sourceTree = "<group>"; };
+		0E92C20B1BFC2E3F00EED4F8 /* Robome.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Robome.jpg; sourceTree = "<group>"; };
+		0E92C20D1BFD8A2A00EED4F8 /* APIServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIServices.h; sourceTree = "<group>"; };
+		0E92C20E1BFD8A2A00EED4F8 /* APIServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIServices.m; sourceTree = "<group>"; };
 		550AC0E3890ECE832D5764F3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		714A0472E269C7E5B4BB1F19 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A8F80D7E1BDC900900299999 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
@@ -206,6 +217,10 @@
 		0E055BE11BD75782003DA820 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0E92C20B1BFC2E3F00EED4F8 /* Robome.jpg */,
+				0E92C2091BFC277700EED4F8 /* Soulmanz_GokuFace.jpg */,
+				0E92C2071BFC270900EED4F8 /* Joy.png */,
+				0E92C2051BFC249200EED4F8 /* robot_face_by_spikesguitar2-d5ddfmb.jpg */,
 				0E055BE21BD7578F003DA820 /* earcon_cancel.wav */,
 				0E055BE31BD7578F003DA820 /* earcon_done_listening.wav */,
 				0E055BE41BD7578F003DA820 /* earcon_listening.wav */,
@@ -221,6 +236,8 @@
 				0E5BE5AF1BE339CB001D40D3 /* iHNLP.m */,
 				0E5BE5B51BE34940001D40D3 /* Robo.h */,
 				0E5BE5B61BE34940001D40D3 /* Robo.m */,
+				0E92C20D1BFD8A2A00EED4F8 /* APIServices.h */,
+				0E92C20E1BFD8A2A00EED4F8 /* APIServices.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -330,8 +347,12 @@
 				0E055BB21BD752FA003DA820 /* LaunchScreen.storyboard in Resources */,
 				0E5BE5BA1BE34964001D40D3 /* RoboPropertyList.plist in Resources */,
 				0E055BAF1BD752FA003DA820 /* Assets.xcassets in Resources */,
+				0E92C2061BFC249200EED4F8 /* robot_face_by_spikesguitar2-d5ddfmb.jpg in Resources */,
 				0E055BE61BD7578F003DA820 /* earcon_done_listening.wav in Resources */,
+				0E92C20A1BFC277700EED4F8 /* Soulmanz_GokuFace.jpg in Resources */,
 				0E055BE51BD7578F003DA820 /* earcon_cancel.wav in Resources */,
+				0E92C20C1BFC2E3F00EED4F8 /* Robome.jpg in Resources */,
+				0E92C2081BFC270900EED4F8 /* Joy.png in Resources */,
 				0E055BE71BD7578F003DA820 /* earcon_listening.wav in Resources */,
 				0E055BAD1BD752FA003DA820 /* Main.storyboard in Resources */,
 			);
@@ -404,6 +425,7 @@
 				0E055BAA1BD752FA003DA820 /* ViewController.m in Sources */,
 				A8F80D801BDC900900299999 /* GCDAsyncSocket.m in Sources */,
 				0E055BA71BD752FA003DA820 /* AppDelegate.m in Sources */,
+				0E92C20F1BFD8A2A00EED4F8 /* APIServices.m in Sources */,
 				0E5BE5B01BE339CB001D40D3 /* iHNLP.m in Sources */,
 				0E055BA41BD752FA003DA820 /* main.m in Sources */,
 				0E5BE5B71BE34940001D40D3 /* Robo.m in Sources */,

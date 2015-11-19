@@ -9,6 +9,7 @@
 #import "Robo.h"
 #import "Query.h"
 #import <AVFoundation/AVFoundation.h>
+#import "APIServices.h"
 
 @interface Robo() {
     NSString *plistPath;
@@ -74,7 +75,7 @@
              }
          }
          else if (tag == NSLinguisticTagDeterminer) {
-            q.determiner = word;
+             q.determiner = word;
          }
          else if (tag == NSLinguisticTagPronoun) {
              if ([whPronouns containsObject:[word lowercaseString]]) {
@@ -86,10 +87,10 @@
          else if (tag == NSLinguisticTagNoun) {
              if (!q.subject) {
                  if (q.determiner) {
-                    q.subject = [NSString stringWithFormat:@"%@ %@", q.determiner, word];
+                     q.subject = [NSString stringWithFormat:@"%@ %@", q.determiner, word];
                      q.determiner = nil;
                  } else {
-                    q.subject = word;
+                     q.subject = word;
                  }
              } else {
                  if (q.determiner) {
@@ -115,32 +116,56 @@
 }
 
 - (void)processQuery:(Query *)q {
+    
     if ([q.subject containsString:@"your"]) {
         q.subject = [q.subject stringByReplacingOccurrencesOfString:@"your" withString:@"my"];
         NSArray *comps = [q.subject componentsSeparatedByString:@" "];
         NSString *prop = [comps lastObject];
         if([[roboDetails allKeys] containsObject:prop]) {
-                q.response = [NSString stringWithFormat:@"%@ %@ %@",q.subject, q.predicate, [roboDetails valueForKey:prop]];
-                    } else {
+            q.response = [NSString stringWithFormat:@"%@ %@ %@",q.subject, q.predicate, [roboDetails valueForKey:prop]];
+        } else {
             q.response = [NSString stringWithFormat:@"I don't know %@", q.subject];
         }
+        [self say:q.response];
+    } else if ([q.subject containsString:@"temperature"]) {
+        [APIServices weatherWithOption:q.predicate WithSuccess:^(id response) {
+            NSLog(@"%@", response);
+            q.response =  [NSString stringWithFormat:@"%@ %@ %@ farenhiet.", q.subject, q.predicate, response];
+            [self say:q.response];
+        } failure:^(NSError *error) {
+            q.response =  [NSString stringWithFormat:@"Sorry, I am unable to tell %@", q.subject];
+            [self say:q.response];
+        }];
+    } else if ([q.subject containsString:@"humidity"]) {
+        [APIServices humidityWithOption:q.predicate WithSuccess:^(id response) {
+            NSLog(@"%@", response);
+            q.response = [NSString stringWithFormat:@"%@ %@ %@ percent", q.subject, q.predicate, response];
+            [self say:q.response];
+        } failure:^(NSError *error) {
+            q.response =  [NSString stringWithFormat:@"Sorry, I am unable to tell %@", q.subject];
+            [self say:q.response];
+        }];
     }
-    
-    [self say:q.response];
 }
-
 
 - (void)say:(NSString*)text {
     NSString *cmd = [text uppercaseString];
-    if (_synthesizer == nil) {
-        _synthesizer = [[AVSpeechSynthesizer alloc] init];
-        _synthesizer.delegate = nil;
-    }
     
-    AVSpeechUtterance *utterence = [[AVSpeechUtterance alloc] initWithString:cmd];
-    AVSpeechSynthesisVoice *voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-US"];
-    [utterence setVoice:voice];
-    
-    [_synthesizer speakUtterance:utterence];
+    dispatch_queue_t myQueue = dispatch_queue_create("My Queue",NULL);
+    dispatch_async(myQueue, ^{
+        // Perform long running process
+        if (_synthesizer == nil) {
+            _synthesizer = [[AVSpeechSynthesizer alloc] init];
+            _synthesizer.delegate = nil;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Update the UI
+            AVSpeechUtterance *utterence = [[AVSpeechUtterance alloc] initWithString:cmd];
+            AVSpeechSynthesisVoice *voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-US"];
+            [utterence setVoice:voice];
+            [_synthesizer speakUtterance:utterence];
+        });
+    });
 }
 @end
