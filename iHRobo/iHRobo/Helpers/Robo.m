@@ -133,7 +133,8 @@
     } else if ([q.subject containsString:@"temperature"]) {
         [APIServices weatherWithOption:q.predicate WithSuccess:^(id response) {
             NSLog(@"%@", response);
-            q.response =  [NSString stringWithFormat:@"%@ %@ %@ farenhiet.", q.subject, q.predicate, response];
+            q.response =  [NSString stringWithFormat:@"%@ %@ %@ farenhiet.", q.subject,
+                           [self reverse:q.predicate], response];
             [self say:q.response];
         } failure:^(NSError *error) {
             q.response =  [NSString stringWithFormat:@"Sorry, I am unable to tell %@", q.subject];
@@ -142,13 +143,27 @@
     } else if ([q.subject containsString:@"humidity"]) {
         [APIServices humidityWithOption:q.predicate WithSuccess:^(id response) {
             NSLog(@"%@", response);
-            q.response = [NSString stringWithFormat:@"%@ %@ %@ percent", q.subject, q.predicate, response];
+            q.response = [NSString stringWithFormat:@"%@ %@ %@ percent", q.subject,
+                          [self reverse:q.predicate], response];
             [self say:q.response];
         } failure:^(NSError *error) {
             q.response =  [NSString stringWithFormat:@"Sorry, I am unable to tell %@", q.subject];
             [self say:q.response];
         }];
     }
+}
+
+- (NSString *)reverse: (NSString *)sentense {
+    NSArray *myWords = [sentense componentsSeparatedByString:@" "];
+    if ([myWords count] == 1) {
+        return sentense;
+    }
+    
+    NSMutableString* theString = [NSMutableString string];
+    for (int i=[myWords count]-1; i>=0;i--){
+        [theString appendFormat:@"%@ ", [myWords objectAtIndex:i]];
+    }
+    return theString;
 }
 
 - (void)say:(NSString*)text {

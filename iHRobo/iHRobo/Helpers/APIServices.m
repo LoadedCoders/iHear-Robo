@@ -27,8 +27,10 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([option containsString:@"inside"]) {
             NSString *temp = [[responseObject lastObject] objectForKey:@"Temperature"];
+            float temperature = [temp floatValue] * 1.8 + 32.0;
+            
             if (success != NULL) {
-                success(temp);
+                success([NSString stringWithFormat:@"%f", temperature]);
             }
         } else {
             NSDictionary *results = [[responseObject objectForKey:@"query"] objectForKey:@"results"];
